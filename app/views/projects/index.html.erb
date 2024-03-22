@@ -1,1 +1,9 @@
-<h1>Hello from index</h1>
+<h1>My projects</h1>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li>Name: <%=project.name %></li>
+    <li>Description: <%= project.description %></li>
+    <li>Priority: <%= project.priority %></li>
+  <% end%>
+</ul>
