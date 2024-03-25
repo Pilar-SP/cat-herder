@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   get "projects", to: "projects#index"
   get "projects/new", to: "projects#new"
   post "projects", to: "projects#create"
-  get "projects/:id", to: "projects#show"
+  get "projects/:id", to: "projects#show", as: :project
+  delete "projects/:id", to: "projects#destroy"
 end
