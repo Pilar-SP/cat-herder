@@ -5,3 +5,10 @@
 
 <h2>Priority</h2>
 <%= @project.priority %>
+
+<div>
+  <%= link_to "Delete",
+    project_path(@project),
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure?"}
+  %>
+</div>
