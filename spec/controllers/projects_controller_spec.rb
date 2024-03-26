@@ -5,10 +5,10 @@ require 'rails_helper'
 RSpec.describe ProjectsController do
   describe 'GET index' do
     let!(:project) { Project.create(name: 'Fix table', description: 'Table has 2 legs broken', priority: 1.4) }
+
     before { get :index }
 
     it 'assigns @projects' do
-      expect(assigns(:projects)).not_to be_empty
       expect(assigns(:projects)).to eq([project])
     end
 
@@ -19,6 +19,7 @@ RSpec.describe ProjectsController do
 
   describe 'GET show' do
     let!(:project) { Project.create(name: 'Fix table', description: 'Table has 2 legs broken', priority: 1.4) }
+
     before { get :show, params: { id: project.id } }
 
     it 'assigns @project' do
@@ -37,6 +38,7 @@ RSpec.describe ProjectsController do
         description: 'Table has 2 broken legs',
         priority: 1.2 } }
     end
+
     let(:project) { Project.find_by(name: 'Fix table') }
 
     it 'assigns @project' do
@@ -57,16 +59,13 @@ RSpec.describe ProjectsController do
       )
     end
 
+    before { delete :destroy, params: { id: project.id } }
+
     it 'deletes @project' do
-      expect do
-        delete :destroy, params: { id: project.id }
-      end.to change(Project, :count).by(-1)
       expect(Project.exists?(project.id)).to be(false)
     end
 
     it 'redirects to index' do
-      delete :destroy, params: { id: project.id }
-
       expect(response).to redirect_to(projects_path)
     end
   end
