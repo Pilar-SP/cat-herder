@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   post 'projects', to: 'projects#create'
   get 'projects/:id', to: 'projects#show', as: :project
   delete 'projects/:id', to: 'projects#destroy'
+  get 'projects/:id/edit', to: 'projects#edit', as: :project_edit
+  patch 'projects/:id', to: 'projects#update'
 end
