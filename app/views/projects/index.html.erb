@@ -6,5 +6,9 @@
     <li>Description: <%= project.description %></li>
     <li>Priority: <%= project.priority %></li>
     <br>
+    <%= link_to 'View project', project_path(project) %>
   <% end%>
 </ul>
+
+
+<%= link_to 'Add project', project_new_path %>
