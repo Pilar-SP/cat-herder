@@ -69,4 +69,48 @@ RSpec.describe ProjectsController do
       expect(response).to redirect_to(projects_path)
     end
   end
+
+  describe 'EDIT project' do
+    let!(:project) do
+      Project.create(
+        name: 'dummy project',
+        description: 'dummy description',
+        priority: 2.3
+      )
+    end
+
+    before do
+      get :edit, params: { id: project.id }
+    end
+
+    it 'assigns @project' do
+      expect(assigns(:project)).to eq(project)
+    end
+  end
+
+  describe 'UPDATE project' do
+    let!(:project) do
+      Project.create(
+        name: 'dummy project',
+        description: 'dummy description',
+        priority: 2.3
+      )
+    end
+
+    project_params = {
+      name: 'Important project',
+      description: 'Important description',
+      priority: 4.0
+    }
+
+    before { patch :update, params: { id: project.id, project: project_params } }
+
+    it 'saves changes to @project' do
+      expect(assigns(:project).name).to eq('Important project')
+    end
+
+    it 'redirects to projects index' do
+      expect(response).to redirect_to(projects_path)
+    end
+  end
 end
