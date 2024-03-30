@@ -14,8 +14,20 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
   def create
     @project = Project.new(project_params)
+    @project.save!
+
+    redirect_to projects_path
+  end
+
+  def update
+    @project = Project.find(params[:id])
+    @project.update(project_params)
     @project.save!
 
     redirect_to projects_path
