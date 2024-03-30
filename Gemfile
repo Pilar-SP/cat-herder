@@ -47,6 +47,8 @@ gem 'tzinfo-data', platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+gem 'pg'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -57,6 +59,9 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rails-controller-testing'
+  gem 'brakeman'
+  gem 'bundler-audit', '~> 0.9.1'
+  gem 'rubocop', require: false
 end
 
 group :development do
@@ -70,7 +75,6 @@ group :development do
   # gem "spring"
 
   gem 'error_highlight', '0.3.0', platforms: [:ruby]
-  gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
 end
