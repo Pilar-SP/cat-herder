@@ -72,7 +72,7 @@ Style/Documentation:
     - 'app/helpers/application_helper.rb'
     - 'app/helpers/projects_helper.rb'
     - 'app/mailers/application_mailer.rb'
-    - 'app/models/application_record.rb'
+    - 'app/models/*'
     - 'config/application.rb'
     - 'db/migrate/*'
 
