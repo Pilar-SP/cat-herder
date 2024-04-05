@@ -35,4 +35,18 @@ RSpec.describe TasksController do
       expect(response).to redirect_to(project_path(project))
     end
   end
+
+  describe 'GET show' do
+    let(:task) { Task.create(name: 'My task', description: 'My description', priority: 1.9, project_id: project.id) }
+
+    before { get :show, params: { project_id: project.id, id: task.id } }
+
+    it 'assigns @task' do
+      expect(assigns(:task)).to eq(task)
+    end
+
+    it 'renders show page' do
+      expect(response).to render_template('show')
+    end
+  end
 end

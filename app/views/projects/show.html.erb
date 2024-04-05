@@ -29,5 +29,6 @@
     <%= task.name %>
     <%= task.description %>
     <%= task.priority %>
+    <%= link_to 'See task', project_task_path(task)%>
   </div>
 <% end %>

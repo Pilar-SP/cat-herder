@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class TasksController < ApplicationController
+  def show
+    @task = Task.find(params[:id])
+  end
+
   def new
     @project = Project.find(params[:project_id])
     @task = Task.new
