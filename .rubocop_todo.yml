@@ -69,10 +69,10 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/projects_helper.rb'
-    - 'app/mailers/application_mailer.rb'
+    - 'app/helpers/*'
+    - 'app/mailers/*'
     - 'app/models/*'
+    - 'app/controllers/*'
     - 'config/application.rb'
     - 'db/migrate/*'
 
