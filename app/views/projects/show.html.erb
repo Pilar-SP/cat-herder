@@ -21,3 +21,13 @@
     new_project_task_path(@project)
   %>
 </div>
+
+<h1>Tasks</h1>
+
+<% @project.tasks.each do |task| %>
+  <div>
+    <%= task.name %>
+    <%= task.description %>
+    <%= task.priority %>
+  </div>
+<% end %>
