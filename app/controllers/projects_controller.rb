@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# CRUD actions for projects
 class ProjectsController < ApplicationController
   def index
     @projects = Project.all

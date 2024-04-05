@@ -9,11 +9,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get 'projects', to: 'projects#index'
-  get 'projects/new', to: 'projects#new', as: :project_new
-  post 'projects', to: 'projects#create'
-  get 'projects/:id', to: 'projects#show', as: :project
-  delete 'projects/:id', to: 'projects#destroy'
-  get 'projects/:id/edit', to: 'projects#edit', as: :project_edit
-  patch 'projects/:id', to: 'projects#update'
+  resources :projects do
+    resources :tasks, only: [:new, :create]
+  end
 end
