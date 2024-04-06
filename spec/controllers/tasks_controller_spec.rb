@@ -49,4 +49,38 @@ RSpec.describe TasksController do
       expect(response).to render_template('show')
     end
   end
+
+  describe 'GET edit' do
+    let(:task) { Task.create(name: 'My task', description: 'My description', priority: 1.9, project_id: project.id) }
+
+    before { get :edit, params: { project_id: project.id, id: task.id } }
+
+    it 'assigns @task' do
+      expect(assigns(:task)).to eq(task)
+    end
+  end
+
+  describe 'UPDATE task' do
+    let(:task) { Task.create(name: 'My task', description: 'My description', priority: 1.9, project_id: project.id) }
+
+    before do
+      patch :update, params: {
+        project_id: project.id,
+        id: task.id,
+        task: {
+          name: 'My updated task',
+          description: 'My description',
+          priority: 1.9
+        }
+      }
+    end
+
+    it 'saves changes to @task' do
+      expect(assigns(:task).name).to eq('My updated task')
+    end
+
+    it 'redirects to project show page' do
+      expect(response).to redirect_to(project_task_path(task))
+    end
+  end
 end

@@ -1,3 +1,5 @@
 Name: <%= @task.name %><br>
 Description: <%= @task.description %><br>
 Priority: <%= @task.priority %><br>
+
+<%=link_to 'Edit', edit_project_task_path(@task) %>
