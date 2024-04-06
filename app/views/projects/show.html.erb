@@ -1,10 +1,6 @@
-<h1>Project <%= @project.name %></h1>
-
-<h2>Description</h2>
-<%= @project.description %>
-
-<h2>Priority</h2>
+<h1><%= @project.name %></h1>
 <%= @project.priority %>
+<p><%= @project.description %></p>
 
 <div>
   <%= link_to "Edit",
@@ -29,6 +25,8 @@
     <%= task.name %>
     <%= task.description %>
     <%= task.priority %>
-    <%= link_to 'See task', project_task_path(task)%>
+    <%= link_to 'See task', project_task_path(task.project, task)%>
+    <hr>
   </div>
 <% end %>
+<%= link_to 'Home', root_path%>
