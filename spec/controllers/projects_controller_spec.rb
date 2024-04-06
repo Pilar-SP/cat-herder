@@ -70,7 +70,7 @@ RSpec.describe ProjectsController do
     end
   end
 
-  describe 'EDIT project' do
+  describe 'GET edit' do
     let!(:project) do
       Project.create(
         name: 'dummy project',
@@ -88,7 +88,7 @@ RSpec.describe ProjectsController do
     end
   end
 
-  describe 'UPDATE project' do
+  describe 'PATCH update' do
     let!(:project) do
       Project.create(
         name: 'dummy project',

@@ -7,3 +7,6 @@
   <%= f.number_field :priority, in: 1.0..4.0, step: 0.1 %>
   <%= f.submit %>
 <% end %>
+<br>
+<%=link_to 'Back to project', project_path(@task.project)%>
+<%= link_to 'Home', root_path%>

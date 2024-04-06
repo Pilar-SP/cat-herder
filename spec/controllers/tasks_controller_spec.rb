@@ -60,7 +60,7 @@ RSpec.describe TasksController do
     end
   end
 
-  describe 'UPDATE task' do
+  describe 'PATCH update' do
     let(:task) { Task.create(name: 'My task', description: 'My description', priority: 1.9, project_id: project.id) }
 
     before do
@@ -81,6 +81,25 @@ RSpec.describe TasksController do
 
     it 'redirects to project show page' do
       expect(response).to redirect_to(project_task_path(task))
+    end
+  end
+
+  describe 'DELETE destroy' do
+    let(:task) { Task.create(name: 'My task', description: 'My description', priority: 1.9, project_id: project.id) }
+
+    before do
+      delete :destroy, params: {
+        id: task.id,
+        project_id: project.id
+      }
+    end
+
+    it 'deletes @project' do
+      expect(Task.exists?(task.id)).to be(false)
+    end
+
+    it 'redirects to index' do
+      expect(response).to redirect_to(project_path(project))
     end
   end
 end
