@@ -1,21 +1,19 @@
 # frozen_string_literal: true
 
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:show, :edit, :update, :destroy]
+
   def index
     @projects = Project.all
   end
 
-  def show
-    @project = Project.find(params[:id])
-  end
+  def show; end
 
   def new
     @project = Project.new
   end
 
-  def edit
-    @project = Project.find(params[:id])
-  end
+  def edit; end
 
   def create
     @project = Project.new(project_params)
@@ -25,7 +23,6 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:id])
     @project.update(project_params)
     @project.save!
 
@@ -33,13 +30,16 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy!
 
     redirect_to projects_path, status: :see_other
   end
 
   private
+
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
   def project_params
     params.require(:project).permit(:name, :description, :priority)
