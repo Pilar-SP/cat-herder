@@ -1,14 +1,1 @@
-<h1>My projects</h1>
-
-<ul>
-  <% @projects.each do |project| %>
-    <li>Name: <%=project.name %></li>
-    <li>Description: <%= project.description %></li>
-    <li>Priority: <%= project.priority %></li>
-    <br>
-    <%= link_to 'View project', project_path(project) %>
-  <% end%>
-</ul>
-
-<div id="root"></div>
-<%= link_to 'Add project', new_project_path %>
+<div id="projects-table"></div>
