@@ -25,14 +25,23 @@ const Button = (props) => {
   }, [isModalOpen]);
 
   const handleFormSubmit = (event) => {
-    event.preventDefault();
     const formData = new FormData(event.target);
     const data = {};
     formData.forEach((value, key) => {
       data[key] = value;
     });
-    console.log(data);
-    // TODO fetch a backend endpoint to create a new project
+
+    fetch('http://localhost:3000/api/v1/projects',
+    {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+      .catch(error => console.error(error))
+      .finally(setIsModalOpen(false));
   };
 
   return (
