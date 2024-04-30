@@ -5,7 +5,7 @@ module Api
     class ProjectsController < ActionController::API
       def index
         @projects = Project.all
-        render json: @projects
+        render json: @projects, status: :ok
       end
 
       def create
