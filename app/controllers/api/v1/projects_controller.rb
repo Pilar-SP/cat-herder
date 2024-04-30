@@ -3,6 +3,11 @@
 module Api
   module V1
     class ProjectsController < ActionController::API
+      def index
+        @projects = Project.all
+        render json: @projects, status: :ok
+      end
+
       def create
         @project = Project.new(
           name: params[:name],

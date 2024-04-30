@@ -3,7 +3,24 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ProjectsController do
-  describe 'POST create' do
+  describe 'GET api/v1/projects' do
+    before do
+      Project.create(name: 'Fix table', description: 'Table has 2 legs broken', priority: 1.4)
+      Project.create(name: 'Do homework', description: 'Catch up on latest homework', priority: 2.0)
+      get :index
+    end
+
+    it 'returns json containing projects' do
+      projects = response.parsed_body
+      expect(projects.size).to eq(2)
+    end
+
+    it 'responds with an ok status' do
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe 'POST api/v1/projects' do
     context 'with valid params' do
       let(:request) do
         post :create, params:

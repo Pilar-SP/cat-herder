@@ -1,11 +1,27 @@
 import React from "react";
 
-const ProjectsTable = () => {
-  const clickHandler = (event) => {
-    // TODO refactor to redirect to the show page using the id from the event
-    console.log(event);
-    location.href = "/projects/3";
+const ProjectsTable = (projects) => {
+  const clickHandler = (id) => {
+    location.href = `/projects/${id}`;
   };
+
+  if (projects.projects.length == 0) {
+    return (
+      <div class="flex items-center justify-center">
+        <figure class="flex justify-center relative max-w-md">
+          <img
+            class="rounded-lg"
+            src="https://cdn.dribbble.com/users/1539273/screenshots/3199784/media/ef85bc9595af31463cade886b8aef5dc.gif"
+            alt="an image stating no projects yet"
+          />
+
+          <figcaption class="font-light text-teal-700 absolute px-4 text-lg text-gray bottom-6">
+            <p>No projects yet</p>
+          </figcaption>
+        </figure>
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-x-auto shadow-md sm:rounded-lg">
@@ -40,58 +56,27 @@ const ProjectsTable = () => {
           </tr>
         </thead>
         <tbody className="cursor-pointer">
-          <tr
-            onClick={clickHandler}
-            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-          >
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
-            >
-               This is some placeholder text for the project name
-            </th>
-            <td className="px-6 py-4">1.2</td>
-            <td className="px-6 py-4">
-              <span className="text-nowrap">Non started</span>
-              </td>
-            <td className="px-6 py-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.
-            </td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
-            >
-              This is some placeholder text for the project name
-            </th>
-            <td className="px-6 py-4">3.2</td>
-            <td className="px-6 py-4">In progress</td>
-            <td className="px-6 py-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </td>
-          </tr>
-          <tr className="bg-white dark:bg-gray-800">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
-            >
-              This is some placeholder text for the project name. This is some placeholder text for the project name
-            </th>
-            <td className="px-6 py-4">2.1</td>
-            <td className="px-6 py-4">Idea</td>
-            <td className="px-6 py-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam
-            </td>
-          </tr>
+          {projects.projects.map((project) => {
+            return (
+              <tr
+                key={project.id}
+                onClick={() => clickHandler(project.id)}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+              >
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
+                >
+                  {project.name}
+                </th>
+                <td className="px-6 py-4">{project.priority}</td>
+                <td className="px-6 py-4">
+                  <span className="text-nowrap">{project.status}</span>
+                </td>
+                <td className="px-6 py-4">{project.description}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
