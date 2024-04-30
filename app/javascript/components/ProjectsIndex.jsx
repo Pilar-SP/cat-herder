@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom/client';
 import Button from './Button'
+import Loader from './Loader';
 import ProjectsTable from './ProjectsTable';
 
 const ProjectsIndex = () => {
+  const [projects, setProjects] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(()=> {
+    fetch("http://localhost:3000/api/v1/projects")
+    .then(response => response.json())
+    .then(data => setProjects(data))
+    .catch(error => console.log(error))
+    .finally(setIsLoading(false))
+  }, [])
+
   return (
     <>
       <div className="flex justify-end">
         <Button title="Add project" />
       </div>
-      <ProjectsTable/>
+      {isLoading && <Loader /> }
+      <ProjectsTable projects={projects}/>
     </>
   )
 }

@@ -1,10 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const ProjectsTable = () => {
-  const clickHandler = (event) => {
-    // TODO refactor to redirect to the show page using the id from the event
-    console.log(event);
-    location.href = "/projects/3";
+const ProjectsTable = (projects) => {
+  const clickHandler = (id) => {
+    location.href = `/projects/${id}`
   };
 
   return (
@@ -40,58 +38,29 @@ const ProjectsTable = () => {
           </tr>
         </thead>
         <tbody className="cursor-pointer">
-          <tr
-            onClick={clickHandler}
+          {projects.projects.map((project => {
+            return(
+            <tr
+            key={project.id}
+            onClick={() => clickHandler(project.id)}
             className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
           >
             <th
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
             >
-               This is some placeholder text for the project name
+               {project.name}
             </th>
-            <td className="px-6 py-4">1.2</td>
+            <td className="px-6 py-4">{project.priority}</td>
             <td className="px-6 py-4">
-              <span className="text-nowrap">Non started</span>
+              <span className="text-nowrap">{project.status}</span>
               </td>
             <td className="px-6 py-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur.
+              {project.description}
             </td>
-          </tr>
-          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
-            >
-              This is some placeholder text for the project name
-            </th>
-            <td className="px-6 py-4">3.2</td>
-            <td className="px-6 py-4">In progress</td>
-            <td className="px-6 py-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </td>
-          </tr>
-          <tr className="bg-white dark:bg-gray-800">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
-            >
-              This is some placeholder text for the project name. This is some placeholder text for the project name
-            </th>
-            <td className="px-6 py-4">2.1</td>
-            <td className="px-6 py-4">Idea</td>
-            <td className="px-6 py-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam
-            </td>
-          </tr>
+            </tr>
+            )
+          }))}
         </tbody>
       </table>
     </div>
