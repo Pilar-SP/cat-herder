@@ -2,8 +2,26 @@ import React, { useState, useEffect } from "react";
 
 const ProjectsTable = (projects) => {
   const clickHandler = (id) => {
-    location.href = `/projects/${id}`
+    location.href = `/projects/${id}`;
   };
+
+  if (projects.projects.length == 0) {
+    return (
+      <div class="flex items-center justify-center">
+        <figure class="flex justify-center relative max-w-md">
+          <img
+            class="rounded-lg"
+            src="https://cdn.dribbble.com/users/1539273/screenshots/3199784/media/ef85bc9595af31463cade886b8aef5dc.gif"
+            alt="an image stating no projects yet"
+          />
+
+          <figcaption class="font-light text-teal-700 absolute px-4 text-lg text-gray bottom-6">
+            <p>No projects yet</p>
+          </figcaption>
+        </figure>
+      </div>
+    );
+  }
 
   return (
     <div className="overflow-x-auto shadow-md sm:rounded-lg">
@@ -38,29 +56,27 @@ const ProjectsTable = (projects) => {
           </tr>
         </thead>
         <tbody className="cursor-pointer">
-          {projects.projects.map((project => {
-            return(
-            <tr
-            key={project.id}
-            onClick={() => clickHandler(project.id)}
-            className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-          >
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
-            >
-               {project.name}
-            </th>
-            <td className="px-6 py-4">{project.priority}</td>
-            <td className="px-6 py-4">
-              <span className="text-nowrap">{project.status}</span>
-              </td>
-            <td className="px-6 py-4">
-              {project.description}
-            </td>
-            </tr>
-            )
-          }))}
+          {projects.projects.map((project) => {
+            return (
+              <tr
+                key={project.id}
+                onClick={() => clickHandler(project.id)}
+                className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+              >
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium text-gray-900 whitespace-normal dark:text-white"
+                >
+                  {project.name}
+                </th>
+                <td className="px-6 py-4">{project.priority}</td>
+                <td className="px-6 py-4">
+                  <span className="text-nowrap">{project.status}</span>
+                </td>
+                <td className="px-6 py-4">{project.description}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
