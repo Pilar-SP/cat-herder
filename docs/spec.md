@@ -28,6 +28,10 @@ A page that lists all tasks from all projects, sorted based on priority
 ### Deployment
 M1 will be complete when the above is implemented and cat herder can be deployed with docker.
 
+### Documentation
+How to run
+How to deploy
+
 ## For Future Milestones
 ### users and authentication
 ### comments on tasks
