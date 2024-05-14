@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom/client';
 import Button from './Button'
 import Loader from './Loader';
 import ProjectsTable from './ProjectsTable';
+import { DOMAIN } from 'env';
 
 const ProjectsIndex = () => {
   const [projects, setProjects] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(()=> {
-    fetch("http://localhost:3000/api/v1/projects")
+   useEffect(()=> {
+    fetch("http://" + DOMAIN + ":3000/api/v1/projects")
     .then(response => response.json())
     .then(data => setProjects(data))
     .catch(error => console.log(error))

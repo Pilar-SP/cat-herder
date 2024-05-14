@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { DOMAIN } from 'env';
 
 const Button = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +32,7 @@ const Button = (props) => {
       data[key] = value;
     });
 
-    fetch('http://localhost:3000/api/v1/projects',
+    fetch("http://" + DOMAIN + ":3000/api/v1/projects",
     {
       headers: {
         'Accept': 'application/json',
