@@ -13,7 +13,7 @@ const ProjectsIndex = () => {
     .then(response => response.json())
     .then(data => setProjects(data))
     .catch(error => console.log(error))
-    .finally(setIsLoading(false))
+    .finally(()=> setIsLoading(false))
   }, [])
 
   return (
@@ -21,8 +21,7 @@ const ProjectsIndex = () => {
       <div className="flex justify-end">
         <Button title="Add project" />
       </div>
-      {isLoading && <Loader /> }
-      <ProjectsTable projects={projects}/>
+      {isLoading ? <Loader /> : <ProjectsTable projects={projects}/> }
     </>
   )
 }

@@ -1,21 +1,21 @@
 import React from "react";
 
-const ProjectsTable = (projects) => {
+const ProjectsTable = ({ projects }) => {
   const clickHandler = (id) => {
     location.href = `/projects/${id}`;
   };
 
-  if (projects.projects.length == 0) {
+  if (projects.length == 0) {
     return (
-      <div class="flex items-center justify-center">
-        <figure class="flex justify-center relative max-w-md">
+      <div className="flex items-center justify-center">
+        <figure className="flex justify-center relative max-w-md">
           <img
-            class="rounded-lg"
+            className="rounded-lg"
             src="https://cdn.dribbble.com/users/1539273/screenshots/3199784/media/ef85bc9595af31463cade886b8aef5dc.gif"
             alt="an image stating no projects yet"
           />
 
-          <figcaption class="font-light text-teal-700 absolute px-4 text-lg text-gray bottom-6">
+          <figcaption className="font-light text-teal-700 absolute px-4 text-lg text-gray bottom-6">
             <p>No projects yet</p>
           </figcaption>
         </figure>
@@ -56,7 +56,7 @@ const ProjectsTable = (projects) => {
           </tr>
         </thead>
         <tbody className="cursor-pointer">
-          {projects.projects.map((project) => {
+          {projects.map((project) => {
             return (
               <tr
                 key={project.id}
